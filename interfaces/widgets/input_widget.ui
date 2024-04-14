@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>659</width>
-    <height>75</height>
+    <width>550</width>
+    <height>81</height>
    </rect>
   </property>
   <property name="font">
@@ -160,7 +160,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../../assets/avatares.qrc">:/Avatares/Avatar_Mulher.jpg</pixmap>
+            <pixmap resource="../../assets/avatares.qrc">:/Avatares/novoAvatar_Homem.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -189,7 +189,6 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../assets/avatares.qrc"/>
   <include location="../../assets/avatares.qrc"/>
  </resources>
  <connections/>

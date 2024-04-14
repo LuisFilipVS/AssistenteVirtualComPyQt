@@ -2,7 +2,7 @@ import json
 
 from PyQt5.QtWidgets import QMainWindow, QWidget,QHBoxLayout, QLineEdit,QPushButton, QLabel, QGridLayout, QFrame
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem
-
+from assistente import capturaAudio as capA
 from  interfaces.widgets.MainWindow import Ui_MainWindow
 from chat_window import ChatWindow
 
@@ -105,10 +105,11 @@ class MainWindow(QMainWindow):
 
     def get_response(self):
         # Recebe o texto formatado para a assistente
-        import teste as t
 
         message_input = self.message_input.toPlainText().strip()
         message_output = "Teste sendo realizado"
+        
+
         ''' area de testes'''
         #message_output = t.mandar_mensagem()
         '''area de testes'''
@@ -128,7 +129,6 @@ class MainWindow(QMainWindow):
                 
         else:
             if message_input:
-                print("Passei por aqui tb")
                 self.chat_data["chat_list"].append(
                     {
                         "input_str" : message_input,

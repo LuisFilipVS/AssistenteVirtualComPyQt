@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="icones">
+    <file>icone_audio.png</file>
+  </qresource>
+</RCC>

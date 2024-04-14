@@ -1,6 +1,8 @@
 <RCC>
   <qresource prefix="Avatares">
     <file>Avatar_Homem.jpg</file>
+    <file>novoAvatar_Homem.png</file>
+    <file>novoAvatar_Mulher.png</file>
     <file>Avatar_Mulher.jpg</file>
   </qresource>
 </RCC>
