@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icones">
+    <file>logo_ifba.png</file>
     <file>icone_audio.png</file>
   </qresource>
 </RCC>

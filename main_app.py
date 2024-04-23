@@ -1,11 +1,21 @@
 import json
-
+from threading import Thread
+from time import sleep
+from PyQt5.QtCore import QTimer, QThread, QObject, pyqtSignal
 from PyQt5.QtWidgets import QMainWindow, QWidget,QHBoxLayout, QLineEdit,QPushButton, QLabel, QGridLayout, QFrame
 from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem
-from assistente import capturaAudio as capA
-from  interfaces.widgets.MainWindow import Ui_MainWindow
+from interfaces.widgets.MainWindow import Ui_MainWindow
 from chat_window import ChatWindow
 
+try:
+    from assistente import assistente
+    from capturaAudio import capturaAudio
+except:
+    from assistente import assistente
+    from assistente import capturaAudio
+
+
+#Classe que configura o menu da interface
 class CustomWidget(QWidget):
 
     def __init__(self, text, show_btn_flag, *args, **kwargs):
@@ -13,21 +23,14 @@ class CustomWidget(QWidget):
 
         layout = QHBoxLayout(self)
         layout.setContentsMargins(5,0,0,0)
-
-        
         chat_icon = QIcon("interfaces/...")
         chat_icon_btn = QPushButton(self)
         chat_icon_btn.setIcon(chat_icon)
-        
-
         chat_title = QLineEdit(self)
         chat_title.setText(text)
         chat_title.setReadOnly(True)
-
-
         delete_btn = QPushButton(self)
         delete_btn.setIcon(QIcon("interfaces/..."))
-
         edit_btn = QPushButton(self)
         edit_btn.setIcon("interfaces/...")
 
@@ -51,7 +54,6 @@ class CustomWidget(QWidget):
         }
 
         """
-
         chat_title.setStyleSheet(chat_title_style_str)
         chat_icon_btn.setStyleSheet(style_str)
         delete_btn.setStyleSheet(style_str)
@@ -66,7 +68,32 @@ class CustomWidget(QWidget):
         layout.addWidget(edit_btn)
         layout.addWidget(delete_btn)
 
+#Classe configura a Thread que irá executar a escuta da assistente em paralelo
+class WorkerThread(QObject):
+    iniciar_fala = pyqtSignal(bool)
+    retorno = pyqtSignal(str,str)
 
+    def __init__(self,janela):
+        super().__init__()
+        self.ui = janela
+
+    #Inicializador da Thread
+    def run(self):
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.Api_Assistente)
+        self.timer.start(10000)
+
+    #Chamada da Assistente
+    def Api_Assistente(self):
+        entrada, saida = None, None
+
+        executor = assistente.assistente(interface=self.ui, iniciar_fala=self.iniciar_fala, retorno=self.retorno)
+        entrada, saida = executor.iniciar()
+        pass
+
+
+#Classe que obtem a interface do chat onde está configurada todas as funções de
+#operação com interfaces do projeto
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -82,37 +109,66 @@ class MainWindow(QMainWindow):
         self.send_message_btn = self.ui.Button_enviar
         self.main_scrollArea = self.ui.scrollArea
         self.logout_btn = self.ui.Button_sair
+        self.frame_confirma_escuta = self.ui.escuta_frame
 
         self.main_scrollArea.setVerticalScrollBarPolicy(1)
-
         self.message_input.setFixedHeight(24)
         self.input_frame.setFixedHeight(42)
+        self.ui.input_frame.setVisible(False)
 
         # Set data for main window when start app
         self.show_chat_list()
         self.show_home_window()
 
-        # Set signal and slot
+        #Esconder Frame Confirma escuta de audio
+        self.frame_confirma_escuta.setVisible(False)
+
+        #Atribuindo gatilhos aoo botões
         self.send_message_btn.clicked.connect(self.get_response)
-        self.new_chat_btn.clicked.connect(self.create_new_chat)
+        self.new_chat_btn.clicked.connect(self.Api_Assistente)
         self.logout_btn.clicked.connect(self.logout)
 
-
-
+    #Função que irá criar o chat de comunicação e iniciará o loop de escuta em outra Thread
     def create_new_chat(self):
-        self.show_home_window()
-        self.show_chat_list(selected_index=None)
+        self.frame_confirma_escuta.setVisible(True)
+        self.ui.Habilitar_voz.setVisible(False)
 
-    def get_response(self):
+        self.paralelo = WorkerThread(self)
+        self.paralelo.run()
+
+    #Função de configuração da Thread
+    def Api_Assistente(self):
+        self.frame_confirma_escuta.setVisible(True)
+        self.ui.Habilitar_voz.setVisible(False)
+        
+        self.thread = QThread()
+        self.paralelo = WorkerThread(self)
+        self.paralelo.moveToThread(self.thread)
+
+        self.thread.started.connect(self.paralelo.run)
+        self.paralelo.iniciar_fala.connect(self.alterar_status)
+        self.paralelo.retorno.connect(self.get_response)
+        self.thread.start()
+
+    #Função que irá definir na interface quando o usuário poderá falar
+    def alterar_status(self,chave):
+        self.ui.Habilitar_voz.setVisible(chave)
+    
+    #Função que irá operar a execução da assistente
+    def obter_retorno_assistente(self):
+        entrada, saida = None, None
+        executor = assistente.assistente()
+        entrada, saida = executor.iniciar()
+        print(entrada, saida)
+    
+    #Função que irá imprimir no chat cada mensagem trocada entre usuário e assistente
+    def get_response(self, msg_entrada, msg_saida):
         # Recebe o texto formatado para a assistente
 
-        message_input = self.message_input.toPlainText().strip()
-        message_output = "Teste sendo realizado"
+        #message_input = self.message_input.toPlainText().strip()
+        message_input = msg_entrada
+        message_output = msg_saida
         
-
-        ''' area de testes'''
-        #message_output = t.mandar_mensagem()
-        '''area de testes'''
 
         print(self.chat_data)
         if self.chat_data is None:
@@ -138,24 +194,26 @@ class MainWindow(QMainWindow):
 
         self.show_chat_window(self.chat_data)
         pass
-
+    
+    
     def show_chat_list(self,selected_index=None):
-
         pass
 
     def show_home_window(self):
         grid_layout = self.clear_main_scroll_area()
-         
-    
+
+    #Função que fecha a aplicação  
     def logout(self):
         self.close()
 
+    #Função auxiliar para adicionar a tela de chat na tela principal
     def show_chat_window(self, chat_data):
         grid_layout = self.clear_main_scroll_area()
         print(chat_data)
         chat_window = ChatWindow(chat_obj=self.message_input, chat_data=chat_data)
         grid_layout.addWidget(chat_window)
 
+    #Função auxiliar que limpa o widget com as mensagens trocadas no chat
     def clear_main_scroll_area(self):
         grid_layout = self.main_scrollArea.findChild(QGridLayout)
         grid_layout.setContentsMargins(0,0,0,0)
@@ -169,7 +227,7 @@ class MainWindow(QMainWindow):
         for child in children_list:
             child.deleteLater()
 
-        # Remove all the spacer 
+        # Remover os espaçamentos
         for row in range(grid_layout.rowCount()):
             for column in range(grid_layout.columnCount()):
                 item = grid_layout.itemAtPosition(row, column)

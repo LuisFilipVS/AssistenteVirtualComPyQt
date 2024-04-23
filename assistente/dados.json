@@ -1,0 +1,42 @@
+{
+    "nome" : "dinorá",
+    "acoes": [
+        {
+            "nome": [
+                "ligar",
+                "ativar"
+            ],
+            "objetos":[
+                "ar-condicionado",
+                "gps"
+            ]
+        },
+        {
+            "nome" : [
+                "desligar",
+                "desativar"
+            ],
+            "objetos" : [
+                "ar-condicionado",
+                "gps"
+            ]
+        },
+        {
+            "nome":[
+                "ajustar",
+                "mudar",
+                "alterar"
+            ],
+            "objetos": [
+                "temperatura"
+            ],
+            "temperatura" :[
+                "celsius",
+                "fahrenheit"
+            ]
+        }
+    ]
+
+
+
+}

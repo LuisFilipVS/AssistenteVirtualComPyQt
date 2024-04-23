@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>905</width>
+    <width>885</width>
     <height>578</height>
    </rect>
   </property>
@@ -76,17 +76,27 @@ background:transparent
 
 #escuta_frame{
 	border: none;
-	align-itens:center;
-	display: flex;
-	justify-content:center
 }
 
 #frame_icone,
 #new_chat_file,
 #frame,
-#menu_frame{
+#menu_frame,
+#frame_logoIf,
+#frame_info{
 	border:none
 }
+
+#Dev_by,
+#Dev_nome,
+#Nome_prof,
+#Orientacoes,
+#Prof_orie,
+#titulo
+{
+	color:white
+}
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -161,7 +171,7 @@ background:transparent
          <property name="minimumSize">
           <size>
            <width>200</width>
-           <height>500</height>
+           <height>400</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -176,7 +186,179 @@ background:transparent
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4"/>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="frame_logoIf">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="assets/icones.qrc">:/icones/logo_ifba.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_info">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>400</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QLabel" name="titulo">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="text">
+                <string>Assistente Virtual em Python</string>
+               </property>
+               <property name="scaledContents">
+                <bool>false</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="Dev_by">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Desenvolvido Por:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="Dev_nome">
+               <property name="text">
+                <string>Luis Filipe Vieira Silva</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="Prof_orie">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Professor Orientador:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="Nome_prof">
+               <property name="text">
+                <string>Luis Paulo</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="Orientacoes">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="text">
+                <string>Inicie o programa apertando o botao iniciar assistente a aguarde o programa autorizar a entrada de audio</string>
+               </property>
+               <property name="scaledContents">
+                <bool>false</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
@@ -298,7 +480,7 @@ background:transparent
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>645</width>
+            <width>625</width>
             <height>416</height>
            </rect>
           </property>
@@ -466,7 +648,7 @@ background:transparent
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>905</width>
+     <width>885</width>
      <height>20</height>
     </rect>
    </property>

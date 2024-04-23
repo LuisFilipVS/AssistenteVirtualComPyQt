@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\output_widget.ui'
+# Form implementation generated from reading ui file 'output_widget.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,13 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from assets import avatares
 
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(552, 75)
+        Form.resize(550, 81)
         Form.setStyleSheet("#Form{\n"
 "    background: #fff;\n"
 "    border-radius: 5px;\n"
@@ -37,9 +36,13 @@ class Ui_Form(object):
 "#label_3{\n"
 "    text-align: end;\n"
 "    padding-left:10px\n"
+"}\n"
+"\n"
+"#frame_2{\n"
+"    border:none\n"
 "}")
         self.gridLayout_3 = QtWidgets.QGridLayout(Form)
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_3.setContentsMargins(0, 3, 0, 3)
         self.gridLayout_3.setSpacing(0)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.frame = QtWidgets.QFrame(Form)
@@ -51,6 +54,7 @@ class Ui_Form(object):
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.frame_2 = QtWidgets.QFrame(self.frame)
+        self.frame_2.setMaximumSize(QtCore.QSize(60, 16777215))
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -60,21 +64,13 @@ class Ui_Form(object):
         self.label.setMinimumSize(QtCore.QSize(30, 30))
         self.label.setMaximumSize(QtCore.QSize(30, 30))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(":/Avatares/Avatar_Homem.jpg"))
+        self.label.setPixmap(QtGui.QPixmap(":/Avatares/novoAvatar_Mulher.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         spacerItem = QtWidgets.QSpacerItem(20, 35, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
-        self.gridLayout_2.addWidget(self.frame_2, 1, 1, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem1, 1, 0, 1, 1)
-        self.label_2 = QtWidgets.QLabel(self.frame)
-        self.label_2.setMinimumSize(QtCore.QSize(500, 0))
-        self.label_2.setObjectName("label_2")
-        self.gridLayout_2.addWidget(self.label_2, 1, 3, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem2, 1, 5, 1, 1)
+        self.gridLayout_2.addWidget(self.frame_2, 1, 0, 1, 1)
         self.label_3 = QtWidgets.QLabel(self.frame)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
@@ -83,7 +79,11 @@ class Ui_Form(object):
         font.setWeight(75)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
-        self.gridLayout_2.addWidget(self.label_3, 0, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.label_3, 0, 2, 1, 1)
+        self.label_2 = QtWidgets.QLabel(self.frame)
+        self.label_2.setMinimumSize(QtCore.QSize(500, 0))
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_2.addWidget(self.label_2, 1, 2, 1, 1)
         self.gridLayout_3.addWidget(self.frame, 0, 0, 1, 1)
 
         self.retranslateUi(Form)
@@ -92,9 +92,9 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
+        self.label_3.setText(_translate("Form", "Assistente (Dinorah)"))
         self.label_2.setText(_translate("Form", "TextLabel"))
-        self.label_3.setText(_translate("Form", "Assistente"))
-
+from assets import avatares_rc
 
 
 if __name__ == "__main__":

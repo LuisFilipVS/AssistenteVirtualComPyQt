@@ -1,0 +1,4 @@
+speech_recognition
+nltk
+PyQt5
+pyqt5-tools

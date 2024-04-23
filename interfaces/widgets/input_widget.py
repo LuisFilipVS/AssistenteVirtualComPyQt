@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\input_widget.ui'
+# Form implementation generated from reading ui file 'input_widget.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,13 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from assets import avatares
 
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(659, 109)
+        Form.resize(550, 81)
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -41,9 +40,13 @@ class Ui_Form(object):
 "#label_3{\n"
 "    text-align: end;\n"
 "    padding-right:10px\n"
+"}\n"
+"\n"
+"#frame_2{\n"
+"    border:none\n"
 "}")
         self.gridLayout_3 = QtWidgets.QGridLayout(Form)
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_3.setContentsMargins(0, 3, 0, 3)
         self.gridLayout_3.setSpacing(0)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.frame = QtWidgets.QFrame(Form)
@@ -83,7 +86,7 @@ class Ui_Form(object):
         self.label.setMinimumSize(QtCore.QSize(30, 30))
         self.label.setMaximumSize(QtCore.QSize(30, 30))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(":/Avatares/Avatar_Mulher.jpg"))
+        self.label.setPixmap(QtGui.QPixmap(":/Avatares/novoAvatar_Homem.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
@@ -100,6 +103,8 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label_3.setText(_translate("Form", "Usuário"))
         self.label_2.setText(_translate("Form", "TextLabel"))
+from assets import avatares_rc
+
 
 if __name__ == "__main__":
     import sys

@@ -1,9 +1,11 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QSpacerItem, QSizePolicy
-
 from interfaces.widgets.input_widget import Ui_Form as Input_Form
 from interfaces.widgets.output_widget import Ui_Form as Out_Form
 
+#Classes de configuração das interfaces
+
+#Classe do Widget de mensagem enviada pelo usuario
 class InputWidget(QWidget):
     def __init__(self, parent=None, chat_obj=None):
         super().__init__(parent)
@@ -13,9 +15,6 @@ class InputWidget(QWidget):
         self.chat_obj = chat_obj
 
         self.input_label = self.input_ui.label_2
-        #self.edit_btn = self.input_ui.pushButton
-
-        #self.edit_btn.clicked.connect(self.set_edit_text)
 
     def set_input_text(self, input_str):
         self.input_label.setText(input_str)
@@ -24,6 +23,7 @@ class InputWidget(QWidget):
         text = self.input_label.text()
         self.chat_obj.setPlainText()
 
+#Classe do Widget de mensagem de retorno do assistente
 class OutputWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -35,6 +35,8 @@ class OutputWidget(QWidget):
     def set_output_text(self, out_str):
         self.out_label.setText(out_str)
 
+
+#Classe principal do Widget que coordena os chat entre usuario e IA
 class ChatWindow(QWidget):
     def __init__(self, parent=None, chat_obj=None, chat_data=None):
         super().__init__(parent)
