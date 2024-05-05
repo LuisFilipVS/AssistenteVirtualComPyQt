@@ -1,4 +1,9 @@
-speech_recognition
+SpeechRecognition
+pyaudio
 nltk
 PyQt5
 pyqt5-tools
+
+#Se Ocorrer erro na instalação do pyaudio, instale os pacotes a seguir:
+#sudo apt-get install python3-pyaudio
+#sudo apt-get install portaudio19-dev python-all-dev python3-all-dev

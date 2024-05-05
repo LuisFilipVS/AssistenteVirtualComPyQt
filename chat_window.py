@@ -87,7 +87,7 @@ class ChatWindow(QWidget):
             out_widget.set_output_text(out_str)
             self.main_verticalLayout.addWidget(out_widget)
 
-        spacerItem = QSpacerItem(20,300,QSizePolicy.Minimum, QSizePolicy.Expanding)
+        spacerItem = QSpacerItem(20,700,QSizePolicy.Minimum, QSizePolicy.Expanding)
         self.main_verticalLayout.addItem(spacerItem)
         self.setLayout(self.main_verticalLayout)
 
